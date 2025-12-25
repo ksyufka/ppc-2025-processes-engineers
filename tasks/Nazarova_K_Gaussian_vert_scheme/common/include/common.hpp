@@ -15,7 +15,7 @@ struct Input {
 };
 
 using InType = Input;
-using OutType = std::vector<double>;  // solution vector x (size n)
+using OutType = std::vector<double>;            // solution vector x (size n)
 using TestType = std::tuple<int, std::string>;  // (n, label) for gtest naming
 using BaseTask = ppc::task::Task<InType, OutType>;
 

@@ -20,10 +20,12 @@ Input MakeSystem(int n, unsigned seed, std::vector<double> *x_expected) {
   std::uniform_real_distribution<double> dist(-1.0, 1.0);
 
   std::vector<double> x(static_cast<std::size_t>(n));
-  for (double &v : x) { v = dist(gen);
-}
-  if (x_expected != nullptr) { *x_expected = x;
-}
+  for (double &v : x) {
+    v = dist(gen);
+  }
+  if (x_expected != nullptr) {
+    *x_expected = x;
+  }
 
   std::vector<double> a(static_cast<std::size_t>(n) * static_cast<std::size_t>(n));
   for (int i = 0; i < n; i++) {
@@ -61,11 +63,13 @@ Input MakeSystem(int n, unsigned seed, std::vector<double> *x_expected) {
 }
 
 bool VectorsNear(const std::vector<double> &a, const std::vector<double> &b, double tol) {
-  if (a.size() != b.size()) { return false;
-}
+  if (a.size() != b.size()) {
+    return false;
+  }
   for (std::size_t i = 0; i < a.size(); i++) {
-    if (std::abs(a[i] - b[i]) > tol) { return false;
-}
+    if (std::abs(a[i] - b[i]) > tol) {
+      return false;
+    }
   }
   return true;
 }
@@ -73,7 +77,7 @@ bool VectorsNear(const std::vector<double> &a, const std::vector<double> &b, dou
 }  // namespace
 
 class NazarovaKGaussianVertSchemeRunPerfTests : public ppc::util::BaseRunPerfTests<InType, OutType> {
-  static constexpr int kN = 120;
+  static constexpr int kN = 620;
   InType input_data_{};
   OutType expected_;
 

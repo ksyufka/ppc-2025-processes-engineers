@@ -1,7 +1,5 @@
 #include "Nazarova_K_Gaussian_vert_scheme/mpi/include/ops_mpi.hpp"
 
-#include "Nazarova_K_Gaussian_vert_scheme/common/include/common.hpp"
-
 #include <mpi.h>
 
 #include <algorithm>
@@ -9,6 +7,8 @@
 #include <cstddef>
 #include <utility>
 #include <vector>
+
+#include "Nazarova_K_Gaussian_vert_scheme/common/include/common.hpp"
 
 namespace nazarova_k_gaussian_vert_scheme_processes {
 namespace {
@@ -70,7 +70,8 @@ bool NazarovaKGaussianVertSchemeMPI::PreProcessingImpl() {
   const auto &aug = GetInput().augmented;
   for (int i = 0; i < n_; i++) {
     for (int gcol = col_start_; gcol < col_end_; gcol++) {
-      const auto src = (static_cast<std::size_t>(i) * static_cast<std::size_t>(total_cols)) + static_cast<std::size_t>(gcol);
+      const auto src =
+          (static_cast<std::size_t>(i) * static_cast<std::size_t>(total_cols)) + static_cast<std::size_t>(gcol);
       LocalAt(local_aug_, local_cols_, i, gcol - col_start_) = aug[src];
     }
   }

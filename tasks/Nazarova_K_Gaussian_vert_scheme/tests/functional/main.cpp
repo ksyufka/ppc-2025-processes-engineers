@@ -24,10 +24,12 @@ Input MakeSystem(int n, unsigned seed, std::vector<double> *x_expected) {
   std::uniform_real_distribution<double> dist(-1.0, 1.0);
 
   std::vector<double> x(static_cast<std::size_t>(n));
-  for (double &v : x) { v = dist(gen);
-}
-  if (x_expected != nullptr) { *x_expected = x;
-}
+  for (double &v : x) {
+    v = dist(gen);
+  }
+  if (x_expected != nullptr) {
+    *x_expected = x;
+  }
 
   // Random diagonally-dominant matrix to guarantee non-singularity
   std::vector<double> a(static_cast<std::size_t>(n) * static_cast<std::size_t>(n));
@@ -68,11 +70,13 @@ Input MakeSystem(int n, unsigned seed, std::vector<double> *x_expected) {
 }
 
 bool VectorsNear(const std::vector<double> &a, const std::vector<double> &b, double tol) {
-  if (a.size() != b.size()) { return false;
-}
+  if (a.size() != b.size()) {
+    return false;
+  }
   for (std::size_t i = 0; i < a.size(); i++) {
-    if (std::abs(a[i] - b[i]) > tol) { return false;
-}
+    if (std::abs(a[i] - b[i]) > tol) {
+      return false;
+    }
   }
   return true;
 }
@@ -111,11 +115,13 @@ TEST_P(NazarovaKGaussianVertSchemeRunFuncTests, SolveSLAE) {
   ExecuteTest(GetParam());
 }
 
-const std::array<TestType, 3> kTestParam = {std::make_tuple(3, "n3"), std::make_tuple(5, "n5"), std::make_tuple(10, "n10")};
+const std::array<TestType, 3> kTestParam = {std::make_tuple(3, "n3"), std::make_tuple(5, "n5"),
+                                            std::make_tuple(10, "n10")};
 
-const auto kTestTasksList = std::tuple_cat(
-    ppc::util::AddFuncTask<NazarovaKGaussianVertSchemeMPI, InType>(kTestParam, PPC_SETTINGS_Nazarova_K_Gaussian_vert_scheme),
-    ppc::util::AddFuncTask<NazarovaKGaussianVertSchemeSEQ, InType>(kTestParam, PPC_SETTINGS_Nazarova_K_Gaussian_vert_scheme));
+const auto kTestTasksList = std::tuple_cat(ppc::util::AddFuncTask<NazarovaKGaussianVertSchemeMPI, InType>(
+                                               kTestParam, PPC_SETTINGS_Nazarova_K_Gaussian_vert_scheme),
+                                           ppc::util::AddFuncTask<NazarovaKGaussianVertSchemeSEQ, InType>(
+                                               kTestParam, PPC_SETTINGS_Nazarova_K_Gaussian_vert_scheme));
 
 const auto kGtestValues = ppc::util::ExpandToValues(kTestTasksList);
 

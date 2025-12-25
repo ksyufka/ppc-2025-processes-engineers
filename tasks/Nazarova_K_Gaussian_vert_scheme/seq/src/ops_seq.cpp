@@ -1,12 +1,12 @@
 #include "Nazarova_K_Gaussian_vert_scheme/seq/include/ops_seq.hpp"
 
-#include "Nazarova_K_Gaussian_vert_scheme/common/include/common.hpp"
-
 #include <algorithm>
 #include <cmath>
 #include <cstddef>
 #include <utility>
 #include <vector>
+
+#include "Nazarova_K_Gaussian_vert_scheme/common/include/common.hpp"
 
 namespace nazarova_k_gaussian_vert_scheme_processes {
 namespace {
